@@ -49,28 +49,6 @@ COMMON_SOURCES=	$(real_topsrcdir)/x11/main.c \
 		$(real_topsrcdir)/x11/sysmng.c \
 		$(real_topsrcdir)/x11/taskmng.c \
 		$(real_topsrcdir)/x11/timemng.c \
-		$(real_topsrcdir)/x11/gtk2/dialog_about.c \
-		$(real_topsrcdir)/x11/gtk2/dialog_calendar.c \
-		$(real_topsrcdir)/x11/gtk2/dialog_config.c \
-		$(real_topsrcdir)/x11/gtk2/dialog_hostdrv.c \
-		$(real_topsrcdir)/x11/gtk2/dialog_ide.c \
-		$(real_topsrcdir)/x11/gtk2/dialog_midi.c \
-		$(real_topsrcdir)/x11/gtk2/dialog_network.c \
-		$(real_topsrcdir)/x11/gtk2/dialog_newdisk.c \
-		$(real_topsrcdir)/x11/gtk2/dialog_pci.c \
-		$(real_topsrcdir)/x11/gtk2/dialog_screen.c \
-		$(real_topsrcdir)/x11/gtk2/dialog_serial.c \
-		$(real_topsrcdir)/x11/gtk2/dialog_sound.c \
-		$(real_topsrcdir)/x11/gtk2/dialog_wab.c \
-		$(real_topsrcdir)/x11/gtk2/window_keydisp.c \
-		$(real_topsrcdir)/x11/gtk2/window_softkbd.c \
-		$(real_topsrcdir)/x11/gtk2/gtk_drawmng.c \
-		$(real_topsrcdir)/x11/gtk2/gtk_screen.c \
-		$(real_topsrcdir)/x11/gtk2/gtk_keyboard.c \
-		$(real_topsrcdir)/x11/gtk2/gtk_menu.c \
-		$(real_topsrcdir)/x11/gtk2/gtk_mouse.c \
-		$(real_topsrcdir)/x11/gtk2/gtk_main.c \
-		$(real_topsrcdir)/x11/gtk2/gtk_wrapper.c \
 		$(real_topsrcdir)/x11/debug/viewmem.c \
 		$(real_topsrcdir)/x11/misc/threadbase.cpp \
 		$(real_topsrcdir)/x11/misc/tty.cpp \
@@ -310,7 +288,6 @@ COMMON_SOURCES=	$(real_topsrcdir)/x11/main.c \
 
 AM_CPPFLAGS=	-I$(real_topsrcdir) \
 		-I$(real_topsrcdir)/x11 \
-		-I$(real_topsrcdir)/x11/gtk2 \
 		-I$(real_topsrcdir)/x11/debug \
 		-I$(real_topsrcdir)/common \
 		-I$(real_topsrcdir)/cbus \
@@ -323,8 +300,63 @@ AM_CPPFLAGS=	-I$(real_topsrcdir) \
 		-I$(real_topsrcdir)/sound \
 		-I$(real_topsrcdir)/sound/fmgen \
 		-I$(real_topsrcdir)/vram \
-		-I$(real_topsrcdir)/wab \
-		$(GTK_CFLAGS) $(GDK_CFLAGS) $(GDK_PIXBUF_CFLAGS) $(SDL_CFLAGS) $(LIBUSB1_CFLAGS) \
+		-I$(real_topsrcdir)/wab
+
+if GTK2
+COMMON_SOURCES+=$(real_topsrcdir)/x11/gtk2/dialog_about.c \
+		$(real_topsrcdir)/x11/gtk2/dialog_calendar.c \
+		$(real_topsrcdir)/x11/gtk2/dialog_config.c \
+		$(real_topsrcdir)/x11/gtk2/dialog_hostdrv.c \
+		$(real_topsrcdir)/x11/gtk2/dialog_ide.c \
+		$(real_topsrcdir)/x11/gtk2/dialog_midi.c \
+		$(real_topsrcdir)/x11/gtk2/dialog_network.c \
+		$(real_topsrcdir)/x11/gtk2/dialog_newdisk.c \
+		$(real_topsrcdir)/x11/gtk2/dialog_pci.c \
+		$(real_topsrcdir)/x11/gtk2/dialog_screen.c \
+		$(real_topsrcdir)/x11/gtk2/dialog_serial.c \
+		$(real_topsrcdir)/x11/gtk2/dialog_sound.c \
+		$(real_topsrcdir)/x11/gtk2/dialog_wab.c \
+		$(real_topsrcdir)/x11/gtk2/window_keydisp.c \
+		$(real_topsrcdir)/x11/gtk2/window_softkbd.c \
+		$(real_topsrcdir)/x11/gtk2/gtk_drawmng.c \
+		$(real_topsrcdir)/x11/gtk2/gtk_screen.c \
+		$(real_topsrcdir)/x11/gtk2/gtk_keyboard.c \
+		$(real_topsrcdir)/x11/gtk2/gtk_menu.c \
+		$(real_topsrcdir)/x11/gtk2/gtk_mouse.c \
+		$(real_topsrcdir)/x11/gtk2/gtk_main.c \
+		$(real_topsrcdir)/x11/gtk2/gtk_wrapper.c
+
+AM_CPPFLAGS+=	-I$(real_topsrcdir)/x11/gtk2
+endif
+
+if GTK3
+COMMON_SOURCES+=$(real_topsrcdir)/x11/gtk3/dialog_about.c \
+		$(real_topsrcdir)/x11/gtk3/dialog_calendar.c \
+		$(real_topsrcdir)/x11/gtk3/dialog_config.c \
+		$(real_topsrcdir)/x11/gtk3/dialog_hostdrv.c \
+		$(real_topsrcdir)/x11/gtk3/dialog_ide.c \
+		$(real_topsrcdir)/x11/gtk3/dialog_midi.c \
+		$(real_topsrcdir)/x11/gtk3/dialog_network.c \
+		$(real_topsrcdir)/x11/gtk3/dialog_newdisk.c \
+		$(real_topsrcdir)/x11/gtk3/dialog_pci.c \
+		$(real_topsrcdir)/x11/gtk3/dialog_screen.c \
+		$(real_topsrcdir)/x11/gtk3/dialog_serial.c \
+		$(real_topsrcdir)/x11/gtk3/dialog_sound.c \
+		$(real_topsrcdir)/x11/gtk3/dialog_wab.c \
+		$(real_topsrcdir)/x11/gtk3/window_keydisp.c \
+		$(real_topsrcdir)/x11/gtk3/window_softkbd.c \
+		$(real_topsrcdir)/x11/gtk3/gtk_drawmng.c \
+		$(real_topsrcdir)/x11/gtk3/gtk_screen.c \
+		$(real_topsrcdir)/x11/gtk3/gtk_keyboard.c \
+		$(real_topsrcdir)/x11/gtk3/gtk_menu.c \
+		$(real_topsrcdir)/x11/gtk3/gtk_mouse.c \
+		$(real_topsrcdir)/x11/gtk3/gtk_main.c \
+		$(real_topsrcdir)/x11/gtk3/gtk_wrapper.c
+
+AM_CPPFLAGS+=	-I$(real_topsrcdir)/x11/gtk3
+endif
+
+AM_CPPFLAGS+=	$(GTK_CFLAGS) $(GDK_CFLAGS) $(GDK_PIXBUF_CFLAGS) $(SDL_CFLAGS) $(LIBUSB1_CFLAGS) \
 		$(X11_CFLAGS) $(XEXT_CFLAGS) \
 		 -DGIT_VERSION=\"$(GIT_VERSION)\" -DNP2_X11 -DUSE_SDLAUDIO -DUSE_SDLMIXER -DBIOS_IO_EMULATION -DOSLANG_UTF8 -DOSLINEBREAK_LF -DSOUND_CRITICAL -DSUPPORT_16BPP -DSUPPORT_24BPP -DSUPPORT_32BPP -DSUPPORT_8BPP -DSUPPORT_BMS -DSUPPORT_CL_GD5430 -DSUPPORT_CRT15KHZ -DSUPPORT_FAST_MEMORYCHECK -DSUPPORT_FMGEN -DSUPPORT_GPIB -DSUPPORT_HOSTDRV -DSUPPORT_HRTIMER -DSUPPORT_IDEIO -DSUPPORT_KAI_IMAGES -DSUPPORT_LARGE_HDD -DSUPPORT_LGY98 -DSUPPORT_NET -DSUPPORT_NORMALDISP -DSUPPORT_NVL_IMAGES -DSUPPORT_PC9861K -DSUPPORT_PX -DSUPPORT_RESUME -DSUPPORT_RS232C_FIFO -DSUPPORT_S98 -DSUPPORT_SCSI -DSUPPORT_SMPU98 -DSUPPORT_SOFTKBD=0 -DSUPPORT_SOUND_SB16 -DSUPPORT_SWSEEKSND -DSUPPORT_SWWABRLYSND -DSUPPORT_STATSAVE=10 -DSUPPORT_UTF8 -DSUPPORT_V30EXT -DSUPPORT_V30ORIGINAL -DSUPPORT_VPCVHD -DSUPPORT_WAB -DUSE_MAME -DVAEG_FIX -DVERMOUTH_LIB -DSUPPORT_ASYNC_CPU -DSUPPORT_NP2_THREAD -DNP2_THREAD_POSIX -DSUPPORT_NP2_TICKCOUNT -DUSE_RESOURCE_BMP
 

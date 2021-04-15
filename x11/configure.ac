@@ -83,6 +83,9 @@ AC_PATH_XTRA
 dnl
 dnl Xnp2kai configure options.
 dnl
+AC_ARG_ENABLE(gtk2,
+  AC_HELP_STRING([--enable-gtk2],[Use GTK+-2 library [default=yes]]),,
+  [enable_gtk2="yes"])
 AC_ARG_ENABLE(gtk3,
   AC_HELP_STRING([--enable-gtk3],[Use GTK+-3 library [default=no]]),,
   [enable_gtk3="no"])
@@ -154,15 +157,20 @@ AS_IF([test x"$enable_gtk3" = "xyes"],
     )
   ]
 )
-AS_IF([test x"$enable_gtk3" != "xyes"],
+AS_IF([test x"$enable_gtk2" = "xyes"],
   [
     PKG_CHECK_MODULES([GTK], [gtk+-2.0],
-      [AC_DEFINE(USE_GTK2,1,[Define to 1 if you have the GTK+-2 library.])]
+      [
+        AC_DEFINE(USE_GTK3,1,[Define to 1 if you have the GTK+-2 library.])
+        AC_DEFINE(USE_GTK2,1,[Define to 1 if you have the GTK+-3 library.])
+      ],
+      enable_gtk2=no
     )
   ]
-)
-AC_SUBST(GTK_CFLAGS)
+)AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_LIBS)
+AM_CONDITIONAL(GTK2,test x"$enable_gtk2" = "xyes")
+AM_CONDITIONAL(GTK3,test x"$enable_gtk3" = "xyes")
 
 dnl
 dnl Checks for SDL and SDL_mixer and SDL_ttf
@@ -318,6 +326,18 @@ if test x"$enable_gtk_deprecated_api" != "xyes"; then
   CPPFLAGS="$CPPFLAGS -Werror=deprecated-declarations"
 fi
 AC_MSG_RESULT($enable_gtk_deprecated_api)
+
+dnl
+dnl Checks for GTK2
+dnl
+AC_MSG_CHECKING([whether to use GTK2])
+AC_MSG_RESULT($enable_gtk2)
+
+dnl
+dnl Checks for GTK3
+dnl
+AC_MSG_CHECKING([whether to use GTK3])
+AC_MSG_RESULT($enable_gtk3)
 
 dnl
 dnl Checks for Xnp2kai version
